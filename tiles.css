@@ -29,27 +29,44 @@ body{
     padding:0;
     float: left;
     background-color: #ccc;
-    height: 40px;
-    width: 40px;
-    border: outset 5px;
+    height: 46px;
+    width: 46px;
+    border: outset 2px;
 }
 
 .tile.ladder{
-    background-image: url('tiles/ladder.png');
+    background-image: url('./tiles/ladder.png');
     width:50px;
     height:50px;
     border: none;
     background-color: rgba(30, 144, 193, 0.626);
 }
 
+.tile.grass{
+    background-image: url('./tiles/grass.png');
+    width:50px;
+    height:50px;
+    border: none;
+    background-color: rgba(11, 68, 10, 0.626);
+}
+
+.tile.stairs{
+    background-image: url('./tiles/stairs.png');
+    height: 50px;
+    width: 50px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.626);
+}
+
+
 .block{
     margin:0;
     padding:0;
     float: left;
     background-color: #ccc;
-    height: 20px;
-    width: 20px;
-    border: outset 15px;
+    height: 30px;
+    width: 30px;
+    border: outset 10px;
 }
 
 .block.water{
@@ -58,6 +75,16 @@ body{
     border: none;
     background-color: rgba(30, 144, 193, 0.626);
 }
+
+.block.shrub{
+    background-image: url('./tiles/shrub.png');
+    height: 50px;
+    width: 50px;
+    border: none;
+    background-color: rgba(62, 141, 69, 0.626);
+}
+
+
 
 .floor{
     margin: auto;
@@ -83,6 +110,29 @@ body{
     left: 400px;
     top: -50px;
 }
+
+.door-locked-top{
+    background-image: url('./doors/door-locked.png');
+}
+
+.door-locked-left{
+    background-image: url('./doors/door-locked.png');
+    transform: rotate(270deg);
+
+}
+
+.door-locked-right{
+    background-image: url('./doors/door-locked.png');
+    transform: rotate(90deg);
+
+}
+
+.door-locked-bottom{
+    background-image: url('./doors/door-locked.png');
+    transform: rotate(180deg);
+
+}
+
 .door-right{
     position: absolute;
     right: -50px;
@@ -93,4 +143,31 @@ body{
     position: absolute;
     bottom: -50px;
     left: 400px;
+}
+
+
+.item{
+    position: absolute;
+}
+
+.key{
+    background-image: url('./items/key.png');
+    height: 25px;
+    width: 25px;
+    top: 260px;
+    left: 260px;
+}
+
+#inventory{
+    height: 40px;
+    width: 100%;
+    border: inset 2px #24221e;
+    margin: 10px;
+}
+.inv-item{
+    display: inline-block;
+    border: inset 2px #24221e;
+    height: 25px;
+    width: 25px;
+    padding: 5px;
 }

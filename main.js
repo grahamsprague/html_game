@@ -3,19 +3,31 @@ loaded_map = null;
 
 load_room(maps['1']);
 
-
+inventory = {
+    weapons:{},
+    items:{},
+};
 
 
 //room loader
 function load_room(map){
 
     map_data = map.data;
-    nav = map.nav;
+    nav =   map.nav;
+    locks = map.locks;
+    key = map.items.key;
+
+    if(locks.n ){  $('.door-top').addClass('door-locked-top')  } else { $('.door-top').removeClass('door-locked-top') }
+    if(locks.w ){  $('.door-left').addClass('door-locked-left')  } else { $('.door-left').removeClass('door-locked-left') }
+    if(locks.e ){  $('.door-right').addClass('door-locked-right')  } else { $('.door-right').removeClass('door-locked-right') }
+    if(locks.s ){  $('.door-bottom').addClass('door-locked-bottom')  } else { $('.door-bottom').removeClass('door-locked-bottom') }
 
     if(nav.n == null){  $('.door-top').hide()  } else { $('.door-top').show() }
     if(nav.w == null){  $('.door-left').hide()  } else { $('.door-left').show() }
     if(nav.e == null){  $('.door-right').hide()  } else { $('.door-right').show() }
     if(nav.s == null){  $('.door-bottom').hide()  } else { $('.door-bottom').show() }
+
+    if (key){ $('.item.key').show() }else{ $('.item.key').hide() }
 
     $('.tile, .block').remove();
     for (let i = 0; i < map_data.length; i++) {
@@ -25,6 +37,9 @@ function load_room(map){
         if (map_data[i] == '1'){  mytype='block';    }
         if (map_data[i] == '2'){  mytype='block water';    }
         if (map_data[i] == '3'){  mytype='tile ladder';    }
+        if (map_data[i] == '4'){  mytype='tile grass';    }
+        if (map_data[i] == '5'){  mytype='block shrub';    }
+        if (map_data[i] == '6'){  mytype='tile stairs';    }
         // console.log('type:'+ type);
         $('.floor').append('<div id="block_'+i+'" class="'+ mytype +'"></div>');
     }
@@ -71,7 +86,7 @@ $(document).on('keydown',function(e) {
             pp_new.l = pp_new.l - move_units;
             
             // check for collision
-            col = check_collision_new( pp_new , $('.block, .door') );
+            col = check_collision_new( pp_new , $('.block, .door, .item') );
 
             if (col == false){
                 var next_image = get_next_image( 'left' );
@@ -95,7 +110,7 @@ $(document).on('keydown',function(e) {
             pp_new.l = pp_new.l + move_units;
 
             // check for collision
-            col = check_collision_new( pp_new , $('.block, .door') );
+            col = check_collision_new( pp_new , $('.block, .door, .item') );
             
             if (col == false){
                 var next_image = get_next_image( 'right' );
@@ -119,7 +134,7 @@ $(document).on('keydown',function(e) {
             pp_new.t = pp_new.t - move_units;
 
             // check for collision
-            col = check_collision_new( pp_new , $('.block, .door') );
+            col = check_collision_new( pp_new , $('.block, .door, .item') );
 
             if (col === false){
                 var next_image = get_next_image( 'up' );
@@ -144,7 +159,7 @@ $(document).on('keydown',function(e) {
             pp_new.t = pp_new.t + move_units;
 
             // check for collision
-            col = check_collision_new( pp_new , $('.block, .door') );
+            col = check_collision_new( pp_new , $('.block, .door, .item') );
             console.log('col:'+ col);
             if (col == false){
                 var next_image = get_next_image( 'down' );
@@ -185,6 +200,32 @@ function check_collision_new(my_pp,my_blocks){
             if($(my_block).hasClass('door')){
                 console.log('DOOR:'+ col_id);
 
+                if( 
+                    $(my_block).hasClass('door-locked-top') ||
+                    $(my_block).hasClass('door-locked-left') ||
+                    $(my_block).hasClass('door-locked-right') ||
+                    $(my_block).hasClass('door-locked-bottom')
+                ){
+
+                    if(inventory.items.key == true){
+                        if(col_id == '1N'){
+                            $(my_block).removeClass('door-locked-top');
+                        }
+                        if(col_id == '1E'){
+                            $(my_block).removeClass('door-locked-left');
+                        }
+                        if(col_id == '1W'){
+                            $(my_block).removeClass('door-locked-right');
+                        }
+                        if(col_id == '1S'){
+                            $(my_block).removeClass('door-locked-bottom');
+                        }
+                        return false;
+                    }
+
+                    return true;
+                }
+
                 if(col_id == '1N'){
                     $('.floor').fadeOut('fast');
                     load_room(maps[loaded_map.nav.n]);
@@ -219,6 +260,22 @@ function check_collision_new(my_pp,my_blocks){
 
                 return false;
 
+            }else if( $(my_block).hasClass('item') ){
+                // create pickup item function
+                // add item to inventory
+                // remove item from display or hide it
+
+                // what kind of item?
+                if (  $(my_block).hasClass('key') ){
+                    inventory.items['key'] = true;
+                    $(my_block).hide();
+                    $('#inventory').append('<div class="inv-item"><img src="./items/key.png" /></div>');
+                    loaded_map.items.key = false;
+                    console.log('ITEM:'+ col_id);
+                    return false;
+                }
+                
+                
             }
         }else{
             // console.log( 'NO COLLISION!' );
