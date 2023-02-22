@@ -16,6 +16,7 @@ function load_room(map){
     nav =   map.nav;
     locks = map.locks;
     key = map.items.key;
+    cheeseburger = map.items.cheeseburger;
 
     if(locks.n ){  $('.door-top').addClass('door-locked-top')  } else { $('.door-top').removeClass('door-locked-top') }
     if(locks.w ){  $('.door-left').addClass('door-locked-left')  } else { $('.door-left').removeClass('door-locked-left') }
@@ -28,6 +29,8 @@ function load_room(map){
     if(nav.s == null){  $('.door-bottom').hide()  } else { $('.door-bottom').show() }
 
     if (key){ $('.item.key').show() }else{ $('.item.key').hide() }
+
+    if (cheeseburger){ $('.item.cheeseburger').show() }else{ $('.item.cheeseburger').hide() }
 
     $('.tile, .block').remove();
     for (let i = 0; i < map_data.length; i++) {
@@ -296,6 +299,19 @@ function check_collision_new(my_pp,my_blocks){
                     $('#inventory').append('<div class="inv-item"><img src="./items/key.png" /></div>');
                     loaded_map.items.key = false;
                     
+                    return false;
+                }
+
+                if (  $(my_block).hasClass('cheeseburger') ){
+                    // KEY
+                    console.log('ITEM: CHEESEBURGER:'+ col_id);
+                    inventory.items['cheeseburger'] = true;
+                    $(my_block).hide();
+                    $('#inventory').append('<div class="inv-item"><img src="./items/cheeseburger.png" /></div>');
+                    loaded_map.items.cheeseburger = false;
+                    
+                    window.location = './winner.html';
+
                     return false;
                 }
                 

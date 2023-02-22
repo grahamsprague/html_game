@@ -158,6 +158,16 @@ body{
     left: 810px;
 }
 
+
+.cheeseburger{
+    background-image: url('./items/cheeseburger.png');
+    height: 25px;
+    width: 25px;
+    top: 200px;
+    left: 400px;
+}
+
+
 #inventory{
     height: 40px;
     width: 100%;
@@ -170,4 +180,18 @@ body{
     height: 25px;
     width: 25px;
     padding: 5px;
+}
+
+.splash-container{
+    text-align: center;
+    margin: auto;
+    margin-top: 200px;
+    border: solid 1px yellow;
+    height: 250px;
+
+    width: 500px;
+}
+
+.splash-container p{
+    margin: 30px;
 }

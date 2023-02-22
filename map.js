@@ -6,7 +6,7 @@ var maps = {
         nav:  { n:4,    e:2,    w:null, s:null },
         locks:{ n:true, e:null, w:null, s:null },
         portal:{},
-        items:{key: false},
+        items:{key: false, cheeseburger: false},
         data:
         '00000000000000000' +
         '00000000000000000' +
@@ -22,7 +22,7 @@ var maps = {
         name: 'room 2',
         nav:  { n: 5,   e:3,    w:1,    s:null },
         locks:{ n:null, e:null, w:null, s:null },
-        items:{key: false},
+        items:{key: false, cheeseburger: false},
         data:
         '44444444444444444' +
         '44444454445444444' +
@@ -38,7 +38,7 @@ var maps = {
         name: 'room 3',
         nav:  { n: 6,   e:null, w:2,    s:null },
         locks:{ n:null, e:null, w:null, s:null },
-        items:{key: false},
+        items:{key: false, cheeseburger: false},
         data:
         '00000000000000000' +
         '00000200000200000' +
@@ -54,7 +54,7 @@ var maps = {
         name: 'room 4',
         nav:  { n:7,    e:5,    w:null, s:1    },
         locks:{ n:true, e:true, w:null, s:true },
-        items:{key: false},
+        items:{key: false, cheeseburger: true},
         portal:{  },
         data:
         '22222222022222222' +
@@ -71,7 +71,7 @@ var maps = {
         name: 'room 5',
         nav:  { n:8,    e:6,    w:4,    s:2    },
         locks:{ n:null, e:null, w:true, s:null },
-        items:{key: false},
+        items:{key: false, cheeseburger: false},
         portal:{ room: 9, top: 100, left: 350 },
         data:
         '00000000000000000' +
@@ -88,7 +88,7 @@ var maps = {
         name: 'room 6',
         nav:  { n:9,    e:null, w:5,    s:3    },
         locks:{ n:null, e:null, w:null, s:null },
-        items:{key: false},
+        items:{key: false, cheeseburger: false},
         portal:{  },
         data:
         '22222222022222222' +
@@ -105,7 +105,7 @@ var maps = {
         name: 'room 7',
         nav:  { n:null, e:8,    w:null, s: 4   },
         locks:{ n:null, e:null, w:null, s:true },
-        items:{key: false},
+        items:{key: false, cheeseburger: false},
         portal:{  },
         data:
         '22222222222222222' +
@@ -122,7 +122,7 @@ var maps = {
         name: 'room 8',
         nav:  { n:null, e:9,    w:7,    s: 5   },
         locks:{ n:null, e:null, w:null, s:null },
-        items:{key: false},
+        items:{key: false, cheeseburger: false},
         portal:{  },
         data:
         '22222222222222222' +
@@ -140,7 +140,7 @@ var maps = {
         name: 'room 9',
         nav:  { n:null, e:null, w:8,    s:6    },
         locks:{ n:null, e:null, w:null, s:null },
-        items:{key: true},
+        items:{key: true, cheeseburger: false},
         portal:{ room: 5, top: 50, left: 650 },
         data:
         '22222222221000000' +
