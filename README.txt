@@ -4,8 +4,8 @@ Map Design
 Character Movement and Animation
 Collision and Bounds Detection
 
-To get this running you'll first need to uopdate npm packages.
+if you have npm installed just run this to make sure jquery gets installed.
 
 npm uopdate
 
-Then just open the tile_test.html in a browser.
+Then just open the index.html in a browser.
